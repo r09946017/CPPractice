@@ -10,14 +10,16 @@ typedef struct Graph {
 
 class Condensation {
 private:
-	graph* org_G = new graph();	// The original graph
-	graph* rev_G = new graph();	// The transpose graph	
+	graph* org_G;			// The original graph
+	graph* rev_G;			// The transpose graph	
 	
 	vector<bool> visited;		// Record the vertices which are already visited in DFS 
 	vector<int> exit_time;		// Record the exit time of DFS
 	vector<int> component;		// Store the current strongly connected component
 public:
 	Condensation () {
+		org_G = new graph();
+		rev_G = new graph();
 		org_G->offset.push_back(0);	// Add one more offset that makes the code simpler
 	}
 
@@ -177,7 +179,6 @@ void Test (int num_of_vertices, vector<vector<int>>& edges, int debug = 1) {
 		tmp->graph_transpose();
 		tmp->log_graph_transpose();
 	}
-	
 		
 	// Output final graph structure
 	graph* G = tmp->get_graph();
